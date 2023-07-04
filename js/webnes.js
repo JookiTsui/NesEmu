@@ -167,16 +167,17 @@ $(function() {
   });  
 
   $('#addROM').click(function() {
-    Dropbox.choose({
-      success: function(files) {
-        files.forEach(function(file) {
-          addRom(file.name.replace('.nes', ''), file.link);
-        });
-      },
-      linkType: "direct",
-      multiselect: true,
-      extensions: ['.nes']
-    });
+    // Dropbox.choose({
+    //   success: function(files) {
+    //     files.forEach(function(file) {
+    //       addRom(file.name.replace('.nes', ''), file.link);
+    //     });
+    //   },
+    //   linkType: "direct",
+    //   multiselect: true,
+    //   extensions: ['.nes']
+    // });
+    addRom("croom", "https://github.com/JookiTsui/NesEmu/blob/master/roms/croom.nes");
   });
 
   var input = nes.input;
