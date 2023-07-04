@@ -132,21 +132,27 @@ $(function() {
   };
 
   function addRom(name, url) {
-    $.ajax({
-      type: 'GET',
-      url: url,
-      timeout: 3000,
-      mimeType: 'text/plain; charset=x-user-defined',
-      success: function(data) {
-        var key = Math.random().toString(36).slice(2);
-        localStorage.setItem(key, data);
-        db.transaction(function(tx){
-          tx.executeSql('INSERT INTO roms (id, name, storage) VALUES (?, ?, ?)', [null, name, key]);
-          tx.executeSql('SELECT * FROM roms WHERE storage = ?', [key], function(tx, result) {
-            $('#scroll ul').append(renderItem(result.rows.item(0)));
-          });
-        });
-      }
+    // $.ajax({
+    //   type: 'GET',
+    //   url: url,
+    //   timeout: 3000,
+    //   mimeType: 'text/plain; charset=x-user-defined',
+    //   success: function(data) {
+    //     var key = Math.random().toString(36).slice(2);
+    //     localStorage.setItem(key, data);
+    //     db.transaction(function(tx){
+    //       tx.executeSql('INSERT INTO roms (id, name, storage) VALUES (?, ?, ?)', [null, name, key]);
+    //       tx.executeSql('SELECT * FROM roms WHERE storage = ?', [key], function(tx, result) {
+    //         $('#scroll ul').append(renderItem(result.rows.item(0)));
+    //       });
+    //     });
+    //   }
+    // });
+    db.transaction(function(tx){
+      tx.executeSql('INSERT INTO roms (id, name, storage) VALUES (?, ?, ?)', [null, name, key]);
+      tx.executeSql('SELECT * FROM roms WHERE storage = ?', [key], function(tx, result) {
+        $('#scroll ul').append(renderItem(result.rows.item(0)));
+      });
     });
   }
 
