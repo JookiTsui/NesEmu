@@ -148,12 +148,6 @@ $(function() {
     //     });
     //   }
     // });
-    db.transaction(function(tx){
-      tx.executeSql('INSERT INTO roms (id, name, storage) VALUES (?, ?, ?)', [null, name, key]);
-      tx.executeSql('SELECT * FROM roms WHERE storage = ?', [key], function(tx, result) {
-        $('#scroll ul').append(renderItem(result.rows.item(0)));
-      });
-    });
   }
 
   db.transaction(function(tx) {
@@ -183,7 +177,11 @@ $(function() {
     //   multiselect: true,
     //   extensions: ['.nes']
     // });
-    addRom("croom", "https://github.com/JookiTsui/NesEmu/blob/master/roms/croom.nes");
+    addRom('Croom', 'roms/croom.nes');
+    addRom('Tetramino', 'roms/lj65.nes');
+    addRom('Galaxy Patrol', 'roms/galaxy.nes');
+    addRom('Fighter F-8000', 'roms/fighter_f8000.nes');
+    addRom('BoxBoy', 'roms/BOXBOY.nes');
   });
 
   var input = nes.input;
